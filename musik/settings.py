@@ -18,12 +18,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
+import os
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yz)suz5p9^hu6$ie9#)onh6rx(967vqbe-7%^=z89-*l@5k&##'
+SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key-if-not-set')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = []
 
@@ -80,13 +80,16 @@ WSGI_APPLICATION = 'musik.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+import dj_database_url
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        dj_database_url.config(conn_max_age=600)
     }
 }
+
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
 
 
 # Password validation
@@ -132,4 +135,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-GEMINI_API_KEY="AIzaSyBRQammFQqZonS0CKligdTTJ2bRBVzHWzw"
+GEMINI_API_KEY=os.getenv('GEMINI_API_KEY', 'fallback-gemini-api-key-if-not-set')
