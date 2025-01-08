@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key-if-not-set')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://musikk-026d163b0815.herokuapp.com/"]
 
 
 # Application definition
