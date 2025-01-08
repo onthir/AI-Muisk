@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key-if-not-set')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ["musikk-026d163b0815.herokuapp.com"]
+ALLOWED_HOSTS = ["musikk-026d163b0815.herokuapp.com", "https://ai-music-fronted.vercel.app"]
 
 
 # Application definition
@@ -55,6 +55,19 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://ai-music-fronted.vercel.app/"
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://ai-music-fronted.vercel.app/",
+    "http://localhost:3000"
+
+
+]
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+    "x-csrftoken",
+    # Add other headers if required
 ]
 
 ROOT_URLCONF = 'musik.urls'
